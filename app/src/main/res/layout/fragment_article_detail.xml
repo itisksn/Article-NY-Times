@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="article"
+            type="com.assignment.nytimes.screens.articlelist.model.ArticleDataResults" />
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        style="@style/WidthMatchHeightMatch"
+        android:background="@color/color_white">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            style="@style/WidthMatchHeightMatch"
+            android:background="@color/color_white">
+
+            <TextView
+                android:id="@+id/text_byline"
+                style="@style/Tv12ML10BlackLine2"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="@{article.byline}"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <ImageView
+                android:id="@+id/image_background"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_200sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_launcher_background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_byline" />
+
+
+            <TextView
+                android:id="@+id/text_title"
+                style="@style/Tv12MarginLeft10"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:gravity="center_horizontal"
+                android:text="@{article.title}"
+                android:textColor="@color/color_black"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/image_background" />
+
+            <TextView
+                android:id="@+id/published_date"
+                style="@style/Tv12MarginLeft10DarkGray"
+                android:drawableLeft="@mipmap/calender_icon"
+                android:drawablePadding="@dimen/_4sdp"
+                android:text='@{article.published_date!= null ? article.published_date : ""}'
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_title" />
+
+
+            <TextView
+                android:id="@+id/text_abstract"
+                style="@style/Tv12MarginLeft10"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text='@{article.abstractDesc!= null ? @string/abstracts.concat(article.abstractDesc) : ""}'
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/published_date" />
+
+
+            <TextView
+                android:id="@+id/text_caption"
+                style="@style/Tv12ML10BlackLine2"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text='@{article.getMedia().get(0).caption != null ? @string/caption.concat(article.getMedia().get(0).caption) : ""}'
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_abstract" />
+
+            <TextView
+                android:id="@+id/text_copyright"
+                style="@style/Tv12MarginLeft10DarkGray"
+                android:text='@{article.getMedia().get(0).copyright != null ? @string/copyright.concat(article.getMedia().get(0).copyright) : ""}'
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_caption" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

@@ -1,0 +1,79 @@
+apply plugin: 'com.android.application'
+apply plugin: 'androidx.navigation.safeargs'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+    defaultConfig {
+        applicationId "com.assignment.nytimes"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    testOptions {
+        unitTests.includeAndroidResources = true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildTypes {
+        debug {
+            buildConfigField "String", "BASE_URL", "\"https://api.nytimes.com/svc/mostpopular/v2/\""
+            buildConfigField "String", "API_KEY", "\"66dvslQ4AML4bZRQLDrmbIRuf2vF0czm\""
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "BASE_URL", "\"https://api.nytimes.com/svc/mostpopular/v2/\""
+            buildConfigField "String", "API_KEY", "\"66dvslQ4AML4bZRQLDrmbIRuf2vF0czm\""
+        }
+    }
+    dataBinding {
+        enabled = true
+    }
+}
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "androidx.appcompat:appcompat:$rootProject.supportLibraryVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintLayoutVersion"
+    testImplementation "junit:junit:$rootProject.junit_version"
+    androidTestImplementation "com.android.support.test:runner:$rootProject.test_runner_version"
+    androidTestImplementation "com.android.support.test:rules:$rootProject.test_runner_version"
+
+    /*view model*/
+    implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel:$rootProject.lifecycleVersion"
+
+    //recycler View
+    implementation "androidx.recyclerview:recyclerview:$rootProject.recyclerViewVersion"
+
+    implementation "com.android.support:support-vector-drawable:$rootProject.supportLibraryVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.interceptor"
+
+    //retrofit dependencies
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofit_version"
+
+    //dimens dependencies
+    implementation "com.intuit.sdp:sdp-android:$rootProject.sdp_version"
+
+    //glide dependencies
+    implementation "com.github.bumptech.glide:glide:$rootProject.glide"
+    annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.glide"
+
+    //Paging
+    implementation "androidx.paging:paging-runtime:$rootProject.paging_version"
+
+    //Navigation
+     implementation "androidx.navigation:navigation-fragment:$rootProject.nav_version"
+    implementation "androidx.navigation:navigation-ui:$rootProject.nav_version"
+
+    //circle image
+    implementation "de.hdodenhof:circleimageview:$rootProject.circleimageversion"
+
+}

@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">NY Times</string>
+    <string name="internet_not_working">Internet Connection is not working, Please check you internet connection.</string>
+    <string name="server_error">Server is not working properly</string>
+    <string name="title">Title: </string>
+    <string name="abstracts">Abstract:</string>
+    <string name="caption">Caption: </string>
+    <string name="copyright">\u00A9 </string>
+
+</resources>

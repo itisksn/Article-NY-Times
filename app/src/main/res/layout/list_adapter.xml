@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="article"
+            type="com.assignment.nytimes.screens.articlelist.model.ArticleDataResults" />
+
+        <variable
+            name="clickListener"
+            type="com.assignment.nytimes.screens.articledetail.ClickHandler" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_white"
+        android:onClick="@{() -> clickListener.onArticleClicked(article)}"
+        android:padding="@dimen/_12sdp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_article"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:src="@drawable/ic_launcher_background"
+            app:civ_border_color="@color/color_dark_grey"
+            app:civ_border_width="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/img_arrow"
+            android:layout_width="@dimen/_10sdp"
+            android:layout_height="@dimen/_10sdp"
+            android:src="@mipmap/arrow"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/text_header"
+            style="@style/Tv12ML10BlackLine2"
+            android:text='@{article.title!= null ? article.title : ""}'
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/img_arrow"
+            app:layout_constraintStart_toEndOf="@id/img_article"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/text_disc"
+            style="@style/Tv12MarginLeft10DarkGray"
+            android:text='@{article.byline!= null ? article.byline : ""}'
+            android:textColor="@color/color_dark_grey"
+            app:layout_constraintEnd_toStartOf="@id/img_arrow"
+            app:layout_constraintStart_toEndOf="@id/img_article"
+            app:layout_constraintTop_toBottomOf="@id/text_header"
+
+            />
+
+        <TextView
+            android:id="@+id/text_date"
+            style="@style/Tv12MarginLeft10DarkGray"
+            android:drawableLeft="@mipmap/calender_icon"
+            android:drawablePadding="@dimen/_4sdp"
+            android:text='@{article.published_date!= null ? article.published_date : ""}'
+            app:layout_constraintEnd_toStartOf="@id/img_arrow"
+            app:layout_constraintTop_toBottomOf="@id/text_disc" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
